@@ -344,6 +344,306 @@
             gap: 5px;
         }
         
+        /* Design Section */
+        .design {
+            padding: 120px 0;
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .design::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(88, 166, 255, 0.1) 1px, transparent 1px) 0 0 / 20px 20px,
+                linear-gradient(rgba(88, 166, 255, 0.1) 1px, transparent 1px) 0 0 / 20px 20px;
+            pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(20px); }
+        }
+
+        .live-code-preview {
+            position: relative;
+            background: var(--code-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+        }
+
+        .code-terminal {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terminal-prompt {
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--accent);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .code-editor {
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .code-line {
+            display: flex;
+            margin-bottom: 5px;
+            opacity: 0;
+            animation: typeIn 0.3s ease forwards;
+        }
+
+        @keyframes typeIn {
+            to { opacity: 1; }
+        }
+
+        .line-number {
+            color: rgba(255, 255, 255, 0.3);
+            width: 30px;
+            text-align: right;
+            padding-right: 15px;
+            user-select: none;
+        }
+
+        .code-output {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            color: var(--accent-green);
+        }
+
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: var(--accent-green);
+            font-family: monospace;
+            font-size: 14px;
+            animation: matrixFall linear infinite;
+        }
+
+        @keyframes matrixFall {
+            to { transform: translateY(100vh); }
+        }
+        
+        .design-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .design-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .design-intro h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .design-intro p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+        
+        .design-item {
+            background: var(--secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .design-item:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(88, 166, 255, 0.3);
+        }
+        
+        .design-preview {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .design-preview img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .design-item:hover .design-preview img {
+            transform: scale(1.1);
+        }
+        
+        .design-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .design-item:hover .design-overlay {
+            transform: translateY(0);
+        }
+        
+        .design-overlay h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .design-overlay p {
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .design-item:hover .design-overlay h4 {
+            transform: translateY(0);
+        }
+        
+        .design-item:hover .design-overlay p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+        
+        .design-details {
+            padding: 20px;
+            background: var(--secondary);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .design-item:hover .design-details {
+            transform: translateY(-10px);
+        }
+        
+        .design-details h4 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .design-details p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .design-tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tool-tag {
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .tool-tag:hover {
+            background: rgba(88, 166, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .design-item:nth-child(1) { animation: fadeInUp 0.5s ease forwards; }
+        .design-item:nth-child(2) { animation: fadeInUp 0.5s ease 0.2s forwards; }
+        .design-item:nth-child(3) { animation: fadeInUp 0.5s ease 0.4s forwards; }
+        
         /* Portfolio Section */
         .portfolio {
             padding: 100px 0;
@@ -854,7 +1154,7 @@
             <nav>
                 <div class="logo">
                     <span class="logo-symbol">&lt;/&gt;</span>
-                    <span>DEV PORTFOLIO</span>
+                    <span>SpolyCode</span>
                 </div>
                 <div class="nav-links">
                     <a href="#home">Home</a>
@@ -978,3 +1278,267 @@
             <div class="about-content">
                 <div class="about-image">
                     <img src="/api/placeholder/600/600" alt="Software Entwickler Portrait">
+                </div>
+                <div class="about-text">
+                    <h3>Über mich</h3>
+                    <p>Ich bin ein erfahrener Software-Entwickler mit über 10 Jahren Erfahrung in der Branche. Mein Hauptfokus liegt auf der Entwicklung von robusten und benutzerfreundlichen Softwarelösungen. Ich liebe es, neue Technologien zu erkunden und sie in praktischen Anwendungen umzusetzen.</p>
+                    <p>Ich bin ein Teamplayer und arbeite gerne in engagierten Teams. Meine Fähigkeiten umfassen sowohl Frontend- als auch Backend-Entwicklung, wobei ich besonderen Wert auf saubere und effiziente Code-Strukturen legen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="design" class="design">
+        <div class="container">
+            <h2 class="section-title">Design & UI/UX</h2>
+            <div class="design-content">
+                <div class="design-intro">
+                    <h3>Visuelle Gestaltung & User Experience</h3>
+                    <p>Meine Design-Philosophie verbindet Ästhetik mit Funktionalität. Ich erstelle intuitive Benutzeroberflächen, die nicht nur gut aussehen, sondern auch eine herausragende Nutzererfahrung bieten.</p>
+                </div>
+
+                <div class="live-code-preview">
+                    <div class="code-terminal">
+                        <span class="terminal-prompt">~/design-portfolio $</span>
+                        <span class="terminal-cursor"></span>
+                    </div>
+                    <div class="code-editor">
+                        <div class="code-line" style="animation-delay: 0.1s">
+                            <span class="line-number">1</span>
+                            <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.2s">
+                            <span class="line-number">2</span>
+                            <span class="keyword">import</span> { motion } <span class="keyword">from</span> <span class="string">'framer-motion'</span>;
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.3s">
+                            <span class="line-number">3</span>
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.4s">
+                            <span class="line-number">4</span>
+                            <span class="keyword">const</span> <span class="function">DesignPortfolio</span> = () => {
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.5s">
+                            <span class="line-number">5</span>
+                            &nbsp;&nbsp;<span class="keyword">return</span> (
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.6s">
+                            <span class="line-number">6</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;motion.div
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.7s">
+                            <span class="line-number">7</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initial={{ opacity: 0 }}
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.8s">
+                            <span class="line-number">8</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animate={{ opacity: 1 }}
+                        </div>
+                        <div class="code-line" style="animation-delay: 0.9s">
+                            <span class="line-number">9</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&gt;
+                        </div>
+                        <div class="code-line" style="animation-delay: 1s">
+                            <span class="line-number">10</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;DesignGrid /&gt;
+                        </div>
+                        <div class="code-line" style="animation-delay: 1.1s">
+                            <span class="line-number">11</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/motion.div&gt;
+                        </div>
+                        <div class="code-line" style="animation-delay: 1.2s">
+                            <span class="line-number">12</span>
+                            &nbsp;&nbsp;);
+                        </div>
+                        <div class="code-line" style="animation-delay: 1.3s">
+                            <span class="line-number">13</span>
+                            };
+                        </div>
+                    </div>
+                    <div class="code-output">
+                        <span class="output-line">Compiling design components...</span>
+                        <span class="output-line">Applying animations...</span>
+                        <span class="output-line">Rendering UI elements...</span>
+                        <span class="output-line">Design system initialized successfully!</span>
+                    </div>
+                </div>
+                
+                <div class="design-grid">
+                    <div class="design-item">
+                        <div class="design-preview">
+                            <img src="/api/placeholder/400/300" alt="UI Design Preview">
+                            <div class="design-overlay">
+                                <h4>Modern Dashboard</h4>
+                                <p>Clean & Minimalist</p>
+                            </div>
+                        </div>
+                        <div class="design-details">
+                            <h4>Dashboard Design</h4>
+                            <p>Ein modernes Dashboard-Design mit Fokus auf Benutzerfreundlichkeit und klarer Informationshierarchie.</p>
+                            <div class="design-tools">
+                                <span class="tool-tag">Figma</span>
+                                <span class="tool-tag">Adobe XD</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="design-item">
+                        <div class="design-preview">
+                            <img src="/api/placeholder/400/300" alt="Mobile App Design">
+                            <div class="design-overlay">
+                                <h4>Mobile App</h4>
+                                <p>Responsive & Intuitive</p>
+                            </div>
+                        </div>
+                        <div class="design-details">
+                            <h4>Mobile App Design</h4>
+                            <p>Responsive App-Design mit Fokus auf mobile Nutzererfahrung und Touch-Interaktionen.</p>
+                            <div class="design-tools">
+                                <span class="tool-tag">Sketch</span>
+                                <span class="tool-tag">Adobe XD</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="design-item">
+                        <div class="design-preview">
+                            <img src="/api/placeholder/400/300" alt="Web Design">
+                            <div class="design-overlay">
+                                <h4>Web Design</h4>
+                                <p>Modern & Engaging</p>
+                            </div>
+                        </div>
+                        <div class="design-details">
+                            <h4>Web Design</h4>
+                            <p>Moderne Webdesigns mit Fokus auf Performance und Benutzererfahrung.</p>
+                            <div class="design-tools">
+                                <span class="tool-tag">Figma</span>
+                                <span class="tool-tag">Photoshop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Meine Projekte</h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active">Alle</button>
+                <button class="filter-btn">Web</button>
+                <button class="filter-btn">Mobile</button>
+                <button class="filter-btn">Design</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/350/200" alt="Projekt 1">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Projekt 1</h3>
+                        <p class="portfolio-description">Ein kurzer Beschreibungstext über das Projekt.</p>
+                        <div class="portfolio-meta">
+                            <span class="tech-tag tech-js"></span>
+                            <span class="tech-tag tech-react"></span>
+                            <span class="tech-tag tech-node"></span>
+                            <a href="#" class="portfolio-link">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/350/200" alt="Projekt 2">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Projekt 2</h3>
+                        <p class="portfolio-description">Ein kurzer Beschreibungstext über das Projekt.</p>
+                        <div class="portfolio-meta">
+                            <span class="tech-tag tech-js"></span>
+                            <span class="tech-tag tech-react"></span>
+                            <span class="tech-tag tech-node"></span>
+                            <a href="#" class="portfolio-link">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/350/200" alt="Projekt 3">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Projekt 3</h3>
+                        <p class="portfolio-description">Ein kurzer Beschreibungstext über das Projekt.</p>
+                        <div class="portfolio-meta">
+                            <span class="tech-tag tech-js"></span>
+                            <span class="tech-tag tech-react"></span>
+                            <span class="tech-tag tech-node"></span>
+                            <a href="#" class="portfolio-link">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="/api/placeholder/350/200" alt="Projekt 4">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Projekt 4</h3>
+                        <p class="portfolio-description">Ein kurzer Beschreibungstext über das Projekt.</p>
+                        <div class="portfolio-meta">
+                            <span class="tech-tag tech-js"></span>
+                            <span class="tech-tag tech-react"></span>
+                            <span class="tech-tag tech-node"></span>
+                            <a href="#" class="portfolio-link">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Kontaktinformationen</h3>
+                    <p>Sie können mich jederzeit kontaktieren, um mehr über meine Arbeiten zu erfahren oder um eine Zusammenarbeit zu vereinbaren.</p>
+                    <p>E-Mail: info@spolycode.com</p>
+                    <p>Telefon: +49 123 456789</p>
+                </div>
+                <div class="contact-links">
+                    <a href="#" class="contact-link">
+                        <span class="contact-icon">&#9993;</span>
+                        E-Mail
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span class="contact-icon">&#9742;</span>
+                        Telefon
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span class="contact-icon">&#9997;</span>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <span class="social-icon">&#128384;</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">&#128385;</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">&#128386;</span>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2023 SpolyCode. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>
